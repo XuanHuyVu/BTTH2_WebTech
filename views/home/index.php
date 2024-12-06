@@ -21,74 +21,82 @@
         <?php
         require_once "../utilities/sidebar.php";
         ?>
-        <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
-            <!-- Main Content -->
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-
-                    <!-- Sidebar Toggle (Topbar) -->
-                    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
-
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
                     <?php
                     require_once "../utilities/topbar.php";
                     ?>
+                </nav>
+                <!-- End of Topbar -->
 
-                    <!-- Begin Page Content -->
-                    <div class="container-fluid">
-                        <!-- Page Heading -->
-                        <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                        </div>
-                    </div>
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+                    <table class="table table-striped table-hover align-middle table-responsive table-bordered">
+                        <thead>
+                            <tr>
+                                <th class="text-center align-middle">Mã</th>
+                                <th class="text-center align-middle">Tiêu đề</th>
+                                <th class="text-center align-middle">Nội dung</th>
+                                <th class="text-center align-middle">Hình ảnh</th>
+                                <th class="text-center align-middle">Ngày đăng</th>
+                                <th class="text-center align-middle">Thể loại</th>
+                            </tr>
+                        </thead>
+                        <tbody class="table-border">
+                            <?php if (empty($newsList)): ?>
+                                <tr>
+                                    <td colspan="6" class="text-center">Không có tin tức nào!.</td>
+                                </tr>
+                            <?php else: ?>
+                                <?php foreach ($newsList as $news): ?>
+                                    <tr>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getId()); ?>
+                                        </td>
+                                        <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
+                                        <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
+                                            <?php echo htmlspecialchars(substr($news->getContent(), 0, 50)) . (strlen($news->getContent()) > 50 ? '...' : ''); ?>
+                                        </td>
+                                        <td class="text-center">
+                                            <img src="../public/assets/images/<?php echo htmlspecialchars($news->getImage()); ?>"
+                                                alt="<?php echo htmlspecialchars($news->getTitle()); ?>"
+                                                class="rounded admin-img" width="100px">
+                                        </td>
 
-                    <?php
-                    require_once "../utilities/footer.php";
-                    ?>
+                                        <td class="text-center align-middle">
+                                            <?php echo htmlspecialchars($news->getCreatedAt()); ?></td>
+                                        <td class="text-center align-middle">
+                                            <?php echo htmlspecialchars($news->getCategoryId()); ?></td>
+                                    </tr>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <?php
+                require_once "../utilities/footer.php";
+                ?>
             </div>
-            <!-- End of Content Wrapper -->
-
+            <!-- End of Main Content -->
         </div>
-        <!-- End of Page Wrapper -->
+        <!-- End of Content Wrapper -->
+    </div>
+    <!-- End of Page Wrapper -->
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Bootstrap core JavaScript-->
-        <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
-        <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-        <!-- Core plugin JavaScript-->
-        <script src="../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-        <!-- Custom scripts for all pages-->
-        <script src="../public/assets/js/sb-admin-2.min.js"></script>
-
-        <!-- Page level plugins -->
-        <script src="../public/assets/vendor/chart.js/Chart.min.js"></script>
-
-        <!-- Page level custom scripts -->
-        <script src="../public/assets/js/demo/chart-area-demo.js"></script>
-        <script src="../public/assets/js/demo/chart-pie-demo.js"></script>
-
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../public/assets/js/sb-admin-2.min.js"></script>
+    <script src="../public/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="../public/assets/js/demo/chart-area-demo.js"></script>
+    <script src="../public/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>
