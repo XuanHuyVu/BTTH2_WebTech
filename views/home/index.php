@@ -13,7 +13,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -92,7 +92,7 @@
                             <?php foreach ($newsList as $news): ?>
                                 <div class="col-12 col-md-6 col-lg-4 mb-4">
                                     <div class="card shadow h-100">
-                                        <img src="../public/assets/images/<?php echo htmlspecialchars($news->getImage()); ?>"
+                                        <img src="../../public/assets/images/<?php echo htmlspecialchars($news->getImage()); ?>"
                                             alt="<?php echo htmlspecialchars($news->getTitle()); ?>" class="card-img-top"
                                             style="height: 200px; object-fit: cover;">
                                         <div class="card-body">
@@ -121,7 +121,7 @@
 
 
                 <?php
-                require_once "../utilities/footer.php";
+                require_once "../../utilities/footer.php";
                 ?>
             </div>
             <!-- End of Main Content -->
@@ -134,13 +134,13 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../public/assets/js/sb-admin-2.min.js"></script>
-    <script src="../public/assets/vendor/chart.js/Chart.min.js"></script>
-    <script src="../public/assets/js/demo/chart-area-demo.js"></script>
-    <script src="../public/assets/js/demo/chart-pie-demo.js"></script>
+    <script src="../../public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../public/assets/js/sb-admin-2.min.js"></script>
+    <script src="../../public/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="../../public/assets/js/demo/chart-area-demo.js"></script>
+    <script src="../../public/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>
