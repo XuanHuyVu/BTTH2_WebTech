@@ -13,20 +13,20 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-    <link href="../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
     <div id="wrapper">
         <?php
-        require_once "../utilities/sidebar.php";
+        require_once "../../utilities/sidebar.php";
         ?>
         <div id="content-wrapper" class="d-flex flex-column">
             <div id="content">
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
                     <?php
-                    require "../utilities/topbar.php";
+                    require_once "../../utilities/topbar.php";
                     ?>
                 </nav>
                 <!-- End of Topbar -->
@@ -52,17 +52,22 @@
                             <?php else: ?>
                                 <?php foreach ($newsList as $news): ?>
                                     <tr>
-                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getId()); ?></td>
+                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getId()); ?>
+                                        </td>
                                         <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
                                         <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
                                             <?php echo htmlspecialchars(substr($news->getContent(), 0, 50)) . (strlen($news->getContent()) > 50 ? '...' : ''); ?>
                                         </td>
-                                        <td class="rounded admin-image">
-                                            <img src="<?php echo htmlspecialchars($news->getImage() ?: 'path/to/default-image.jpg'); ?>"
-                                                alt="News Image" width="100">
+                                        <td class="text-center">
+                                            <img src="../../public/assets/images/<?php echo htmlspecialchars($news->getImage()); ?>"
+                                                alt="<?php echo htmlspecialchars($news->getTitle()); ?>"
+                                                class="rounded admin-img" width="100px">
                                         </td>
-                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getCreatedAt()); ?></td>
-                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getCategoryId()); ?></td>
+
+                                        <td class="text-center align-middle">
+                                            <?php echo htmlspecialchars($news->getCreatedAt()); ?></td>
+                                        <td class="text-center align-middle">
+                                            <?php echo htmlspecialchars($news->getCategoryId()); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
@@ -72,7 +77,7 @@
 
 
                 <?php
-                require_once "../utilities/footer.php";
+                require_once "../../utilities/footer.php";
                 ?>
             </div>
             <!-- End of Main Content -->
@@ -85,13 +90,13 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
-    <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../public/assets/js/sb-admin-2.min.js"></script>
-    <script src="../public/assets/vendor/chart.js/Chart.min.js"></script>
-    <script src="../public/assets/js/demo/chart-area-demo.js"></script>
-    <script src="../public/assets/js/demo/chart-pie-demo.js"></script>
+    <script src="../../public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../public/assets/js/sb-admin-2.min.js"></script>
+    <script src="../../public/assets/vendor/chart.js/Chart.min.js"></script>
+    <script src="../../public/assets/js/demo/chart-area-demo.js"></script>
+    <script src="../../public/assets/js/demo/chart-pie-demo.js"></script>
 </body>
 
 </html>
