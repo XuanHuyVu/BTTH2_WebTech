@@ -44,5 +44,9 @@ class User {
     public function setRole($role) {
         $this->role = $role;
     }
+
+    public function verifyPassword($password) {
+        return password_verify($password, $this->password);
+    }
 }
 ?>
