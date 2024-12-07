@@ -1,3 +1,18 @@
+<?php
+declare(strict_types=1);
+session_start(); // Bắt đầu session
+
+// Kiểm tra xem người dùng đã đăng nhập chưa
+if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
+    // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
+    header("Location: login.php");
+    exit();
+}
+require_once '../../controllers/AdminController.php';
+$adminController = new AdminController();
+$newsList = $adminController->indexAdmin();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -7,7 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>News Management System</title>
+    <title>News Management System | Dashboard</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet"
         type="text/css">
     <link
@@ -52,7 +67,7 @@
                             <?php else: ?>
                                 <?php foreach ($newsList as $news): ?>
                                     <tr>
-                                        <td class="text-center align-middle"><?php echo htmlspecialchars($news->getId()); ?>
+                                        <td class="text-center align-middle"><?php echo $news->getId(); ?>
                                         </td>
                                         <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
                                         <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
@@ -67,15 +82,13 @@
                                         <td class="text-center align-middle">
                                             <?php echo htmlspecialchars($news->getCreatedAt()); ?></td>
                                         <td class="text-center align-middle">
-                                            <?php echo htmlspecialchars($news->getCategoryId()); ?></td>
+                                            <?php echo $news->getCategoryId(); ?></td>
                                     </tr>
                                 <?php endforeach; ?>
                             <?php endif; ?>
                         </tbody>
                     </table>
                 </div>
-
-
                 <?php
                 require_once "../../utilities/footer.php";
                 ?>

@@ -73,7 +73,7 @@
             <div class="modal-body">Chọn "Log Out" nếu bạn muốn đóng phiên làm việc của mình!</div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../admin/login.php">Log Out</a>
+                <a class="btn btn-primary" href="/BTTH2/views/admin/logout.php">Log Out</a>
             </div>
         </div>
     </div>

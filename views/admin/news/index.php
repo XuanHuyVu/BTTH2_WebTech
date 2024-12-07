@@ -1,3 +1,9 @@
+<?php
+require_once "../../../controllers/NewsController.php";
+$newsController = new NewsController();
+$newsList = $newsController->index();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -33,33 +39,42 @@
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
-                    <a href="add.php" class="btn btn-primary">Add News</a>
-                    <table class="table">
-                        <thead>
+                    <a href="add.php" class="btn btn-primary"><i class="fas fa-circle-plus"></i> Thêm tin tức</a>
+                    <div>
+
+                    </div>
+                    <table class="table table-striped table-hover align-middle table-responsive table-bordered">
+                        <thead class="text-center">
                             <tr>
-                                <th>ID</th>
-                                <th>Title</th>
-                                <th>Content</th>
-                                <th>Image</th>
-                                <th>Created at</th>
-                                <th>Category id</th>
-                                <th>Action</th>
+                                <th class="align-middle">Mã</th>
+                                <th class="align-middle">Tiêu đề</th>
+                                <th class="align-middle">Nội dung</th>
+                                <th class="align-middle">Hình ảnh</th>
+                                <th class="align-middle">Ngày đăng</th>
+                                <th class="align-middle">Thể loại</th>
+                                <th class="align-middle">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php foreach ($newsList as $news): ?>
                                 <tr>
                                     <td><?php echo $news->getId(); ?></td>
-                                    <td><?php echo $news->getTitle(); ?></td>
-                                    <td><?php echo $news->getContent(); ?></td>
-                                    <td><img src="<?php echo $news->getImage(); ?>" alt="" width="100"></td>
-                                    <td><?php echo $news->getCreatedAt(); ?></td>
+                                    <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
+                                    <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
+                                        <?php echo htmlspecialchars(substr($news->getContent(), 0, 50)) . (strlen($news->getContent()) > 50 ? '...' : ''); ?>
+                                    </td>
+                                    <td class="text-center">
+                                        <img src="../../../public/assets/images/<?php echo htmlspecialchars($news->getImage()); ?>"
+                                            alt="<?php echo htmlspecialchars($news->getTitle()); ?>"
+                                            class="rounded admin-img" width="100px">
+                                    </td>
+                                    <td><?php echo htmlspecialchars($news->getCreatedAt()); ?></td>
                                     <td><?php echo $news->getCategoryId(); ?></td>
                                     <td>
                                         <a href="edit.php?controller=news&action=edit&id=<?php echo $news->getId(); ?>"
-                                            class="btn btn-warning">Edit</a>
+                                            class="btn btn-warning"><i class="fas fa-pen-to-square"></i> Edit</a>
                                         <a href="index.php?controller=news&action=delete&id=<?php echo $news->getId(); ?>"
-                                            class="btn btn-danger">Delete</a>
+                                            class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
                                     </td>
                                 </tr>
                             <?php endforeach; ?>

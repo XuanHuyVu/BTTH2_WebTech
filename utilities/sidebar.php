@@ -1,5 +1,5 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center">
         <div class="sidebar-brand-icon">
             <i class="fas fa-user-gear"></i>
         </div>
@@ -10,8 +10,8 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item active">
-        <a class="nav-link" href="">
+    <li class="nav-item active" >
+        <a class="nav-link" href="/BTTH2/views/admin/dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -21,21 +21,21 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="">
             <i class="fa-solid fa-user" style="color: #ffffff;"></i>
             <span>Users</span></a>
     </li>
 
     <!-- Nav Item - News -->
     <li class="nav-item">
-        <a class="nav-link" href="../admin/news/index.php">
+        <a class="nav-link" href="/BTTH2/views/admin/news/index.php">
             <i class="fas fa-newspaper" style="color: #ffffff;"></i>
             <span>News</span></a>
     </li>
 
     <!-- Nav Item - Categories -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="">
             <i class="fas fa-list" style="color: #ffffff;"></i>
             <span>Categories</span></a>
     </li>
