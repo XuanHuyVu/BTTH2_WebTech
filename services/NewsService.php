@@ -1,16 +1,19 @@
 <?php
 declare(strict_types=1);
-require_once __DIR__.'/../models/News.php';
+require_once __DIR__ . '/../models/News.php';
 
-class NewsService {
-    private function connect(): PDO {
+class NewsService
+{
+    private function connect(): PDO
+    {
         return new PDO('mysql:host=localhost;dbname=newsweb', 'root', '', [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         ]);
     }
 
-    public function getAllNews(): array {
+    public function getAllNews(): array
+    {
         $newsList = [];
         try {
             $db = $this->connect();
@@ -21,12 +24,12 @@ class NewsService {
 
             foreach ($news as $n) {
                 $newsList[] = new News(
-                    (int)$n['id'],
+                    (int) $n['id'],
                     $n['title'],
                     $n['content'],
                     $n['image'],
                     $n['created_at'],
-                    (int)$n['category_id']
+                    (int) $n['category_id']
                 );
             }
         } catch (PDOException $e) {
@@ -36,7 +39,8 @@ class NewsService {
         return $newsList;
     }
 
-    public function getNewsById(int $id): ?News {
+    public function getNewsById(int $id): ?News
+    {
         $news = null;
         try {
             $db = $this->connect();
@@ -47,12 +51,12 @@ class NewsService {
 
             if ($n) {
                 $news = new News(
-                    (int)$n['id'],
+                    (int) $n['id'],
                     $n['title'],
                     $n['content'],
                     $n['image'],
                     $n['created_at'],
-                    (int)$n['category_id']
+                    (int) $n['category_id']
                 );
             }
         } catch (PDOException $e) {
@@ -61,7 +65,8 @@ class NewsService {
         return $news;
     }
 
-    public function addNews(News $news): void {
+    public function addNews(News $news): void
+    {
         try {
             $db = $this->connect();
             $sql = 'INSERT INTO news (title, content, image, created_at, category_id) VALUES (?, ?, ?, ?, ?)';
@@ -78,7 +83,8 @@ class NewsService {
         }
     }
 
-    public function updateNews(News $news): void {
+    public function updateNews(News $news): void
+    {
         try {
             $db = $this->connect();
             $sql = 'UPDATE news SET title = ?, content = ?, image = ?, created_at = ?, category_id = ? WHERE id = ?';
@@ -96,14 +102,33 @@ class NewsService {
         }
     }
 
-    public function deleteNews(int $id): void {
+    // NewsService.php
+
+    public function deleteNews($id)
+    {
         try {
-            $db = $this->connect();
-            $sql = 'DELETE FROM news WHERE id = ?';
-            $stmt = $db->prepare($sql);
+            // Cấu hình kết nối PDO
+            $host = 'localhost';
+            $dbname = 'newsweb';
+            $username = 'root';
+            $password = '';
+
+            // Kết nối PDO
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            // Xóa tin tức trong cơ sở dữ liệu
+            $sql = "DELETE FROM news WHERE id = ?";
+            $stmt = $pdo->prepare($sql);
             $stmt->execute([$id]);
-        } catch (PDOException $e) {
-            error_log($e->getMessage());
+
+            // Trả về true nếu xóa thành công
+            return true;
+        } catch (Exception $e) {
+            // Nếu có lỗi, trả về false
+            return false;
         }
     }
+
+
 }

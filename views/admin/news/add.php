@@ -1,3 +1,32 @@
+<?php
+// Kết nối với NewsController để xử lý dữ liệu form
+require_once "../../../controllers/NewsController.php";
+$newsController = new NewsController();
+
+// Kiểm tra xem form có được gửi đi hay không
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $title = $_POST['title'];
+    $content = $_POST['content'];
+    $created_at = $_POST['created_at'];
+    $category_id = $_POST['category_id'];
+
+    // Xử lý upload file
+    if (isset($_FILES['image'])) {
+        $image = $_FILES['image']['name'];
+        $target_dir = "../../../public/assets/images/";
+        $target_file = $target_dir . basename($image);
+
+        // Kiểm tra nếu file có phải là hình ảnh hợp lệ
+        if (move_uploaded_file($_FILES['image']['tmp_name'], $target_file)) {
+            // Gọi phương thức addNews từ controller để thêm tin tức vào cơ sở dữ liệu
+            $newsController->addNews($title, $content, $image, $created_at, $category_id);
+        } else {
+            echo "<script>alert('Có lỗi khi tải hình ảnh!');</script>";
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,7 +55,7 @@
             </div>
             <div class="mb-3">
                 <label for="created_at" class="form-label">Ngày đăng:</label>
-                <input type="date" id="created_at" name="created_at" class="form-control" required>
+                <input type="text" id="created_at" name="created_at" class="form-control" required>
             </div>
             <div class="mb-3">
                 <label for="category_id" class="form-label">Thể loại:</label>
