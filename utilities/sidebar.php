@@ -28,14 +28,14 @@
 
     <!-- Nav Item - News -->
     <li class="nav-item">
-        <a class="nav-link" href="../admin/news/index.php">
+        <a class="nav-link" href="/tlunews/BTTH2_WebTech/views/admin/news/index.php">
             <i class="fas fa-newspaper" style="color: #ffffff;"></i>
             <span>News</span></a>
     </li>
 
     <!-- Nav Item - Categories -->
     <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="/tlunews/BTTH2_WebTech/views/admin/categories/index.php">
             <i class="fas fa-list" style="color: #ffffff;"></i>
             <span>Categories</span></a>
     </li>
