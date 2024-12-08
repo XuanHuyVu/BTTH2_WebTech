@@ -29,4 +29,3 @@ declare(strict_types=1);
         $this->name = $name;
     }
  }
-?>

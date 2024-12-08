@@ -14,7 +14,8 @@ class CategoryService {
         }
     }
 
-    public function getAllCategories(): array {
+    public function getAllCategories(): array
+    {
         try {
             $this->connectCate(); // Ensure connection is established
             $sql = 'SELECT * FROM categories';
@@ -27,10 +28,31 @@ class CategoryService {
             return $result;
         } catch (PDOException $e) {
             error_log("Database error: " . $e->getMessage());
-            throw new Exception("Unable to fetch categories.");
+            return $result = null;
         } finally {
             $this->pdo = null;
         }
     }
+    public function getCategoriesById(int $id): ?News
+    {
+        $categories = null;
+        try {
+            $db = $this->connect();
+            $sql = 'SELECT * FROM news WHERE id = ?';
+            $stmt = $db->prepare($sql);
+            $stmt->execute([$id]);
+            $n = $stmt->fetch();
+
+            if ($n) {
+                $categories = new News(
+                    (int) $n['id'],
+                    $n['name'],
+                );
+            }
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+        return $categories;
+    }
 }
-?>
+
