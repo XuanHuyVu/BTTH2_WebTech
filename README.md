@@ -20,7 +20,7 @@
 <img src="/public/assets/images/edit_news.png" alt="Edit News" />
 
 
-### Users
+## Users
 
 
 ## Categories
