@@ -34,5 +34,34 @@ class UserService {
         }
         return $usersList;
     }
+
+    public function addUser(user $user): void {
+        try {
+            $db = $this->connect();
+            $sql = 'INSERT INTO users (username, password, role)'
+        . ' VALUES (:username, :password, :role)';
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                $user->getUsername(),
+                $user->getPassword(),
+                $user->getRole(),
+            ]);
+        }catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+    }
+    public function deleteUser(user $user): void {
+        try {
+            $db = $this->connect();
+            $sql = 'DELETE FROM users WHERE id = ?';
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                'id' => $user->getId(),
+            ]);
+
+        }catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+    }
 }
 ?>

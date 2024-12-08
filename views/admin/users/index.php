@@ -35,7 +35,7 @@ $users = $usersController->indexUser();
                 </nav>
 
                 <div class="container-fluid">
-                    <a href="add.php" class="btn btn-primary"><i class="fas fa-circle-plus"></i> Thêm tin tức</a>
+                    <a href="add.php" class="btn btn-primary"><i class="fas fa-circle-plus"></i> Thêm Người Dùng</a>
                     <div>
 
                     </div>
@@ -46,6 +46,7 @@ $users = $usersController->indexUser();
                             <th class="align-middle">Tên người dùng</th>
                             <th class="align-middle">Mật khẩu</th>
                             <th class="align-middle">Vai trò</th>
+                            <th class="align-middle">Thao tác</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -55,14 +56,21 @@ $users = $usersController->indexUser();
                                 <td><?php echo htmlspecialchars($users->getUsername()); ?></td>
                                 <td><?php echo htmlspecialchars($users->getPassword()); ?></td>
                                 <td><?php echo htmlspecialchars($users->getRole()); ?></td>
-
-<!--                                <td>-->
-<!--                                    <a href="edit.php?controller=news&action=edit&id=--><?php //echo $news->getId(); ?><!--"-->
-<!--                                        class="btn btn-warning"><i class="fas fa-pen-to-square"></i> Edit</a>-->
-<!--                                    <a href="index.php?controller=news&action=delete&id=--><?php //echo $news->getId(); ?><!--"-->
-<!--                                        class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>-->
-<!--                                </td>-->
+                                <td>
+                                    <div class="row d-flex">
+                                        <a href="edit.php?controller=news&action=edit&id=<?php echo $users->getId(); ?>"
+                                           class="btn btn-warning btn-sm"><i class="fas fa-pen-to-square"></i></a>
+                                        <form action="delete.php" method="post" class="d-inline-block">
+                                            <input type="hidden" name="id" value="<?= $users->getId() ?>">
+                                            <button type="submit" class="btn btn-danger btn-sm"
+                                                    onclick="return confirm('Bạn có chắc muốn xóa tin tức này không?')">
+                                                <i class="fas fa-trash"></i>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
+
                         <?php endforeach; ?>
                         </tbody>
                     </table>
