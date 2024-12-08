@@ -1,20 +1,27 @@
 <?php
 session_start();
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    require_once '../services/AuthService.php';
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Dummy credentials for demonstration purposes
-    $valid_username = 'admin';
-    $valid_password = '123456';
+    $authService = new AuthService();
+    $user = $authService->login($username, $password);
 
-    if ($username === $valid_username && $password === $valid_password) {
-        $_SESSION['username'] = $username;
-        header('Location: dashboard.php');
-        exit();
+    if ($user) {
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['role'] = $user['role'];
+
+        // Chuyển hướng theo vai trò
+        if ($user['role'] == 1) {
+            header('Location: ../views/admin/dashboard.php');
+        } else {
+            header('Location: ../public/index.php');
+        }
+        exit;
     } else {
-        $error = 'Invalid username or password';
+        $error = "Tên đăng nhập hoặc mật khẩu không đúng.";
     }
 }
 ?>
@@ -29,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>News Management System | Login</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet"
         type="text/css">
-    <link href="../../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
+    <link href="../public/assets/css/sb-admin-2.min.css" rel="stylesheet">
 </head>
 
 <body class="bg-gradient-primary">
@@ -40,14 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="card-body p-0">
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img src="../../public/assets/images/login.png" alt="Login" style="width: 500px; height: 440px">
+                                <img src="../public/assets/images/login.png" alt="Login" style="width: 500px; height: 440px">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="../admin/dashboard.php" method="POST">
+                                    <form class="user" action="../views/admin/dashboard.php" method="POST">
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"
                                                 id="exampleInputEmail" aria-describedby="emailHelp" name="username"
@@ -84,10 +91,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </div>
     </div>
-    <script src="../../public/assets/vendor/jquery/jquery.min.js"></script>
-    <script src="../../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="../../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
-    <script src="../../public/assets/js/sb-admin-2.min.js"></script>
+    <script src="../public/assets/vendor/jquery/jquery.min.js"></script>
+    <script src="../public/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../public/assets/vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../public/assets/js/sb-admin-2.min.js"></script>
 </body>
 
 </html>

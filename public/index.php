@@ -1,5 +1,12 @@
 <?php
 declare(strict_types=1);
+
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 0) {
+    header('Location: ../views/login.php');
+    exit;
+}
+
 require '../controllers/HomeController.php';
 $homeController = new HomeController();
 $newsList = $homeController->indexHome();
@@ -78,7 +85,7 @@ $newsList = $homeController->indexHome();
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="btn btn-danger" href="../views/admin/login.php">Đăng nhập</a>
+                            <a class="btn btn-danger" href="../views/login.php">Đăng nhập</a>
                         </li>
                     </ul>
                 </nav>
