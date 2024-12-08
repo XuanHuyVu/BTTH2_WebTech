@@ -1,13 +1,10 @@
 <?php
-declare(strict_types=1);
-session_start(); // Bắt đầu session
-
-// Kiểm tra xem người dùng đã đăng nhập chưa
-if (!isset($_SESSION['logged_in']) || $_SESSION['logged_in'] !== true) {
-    // Nếu chưa đăng nhập, chuyển hướng đến trang đăng nhập
-    header("Location: login.php");
-    exit();
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] != 1) {
+    header('Location: ../login.php');
+    exit;
 }
+
 require_once '../../controllers/AdminController.php';
 $adminController = new AdminController();
 $newsList = $adminController->indexAdmin();

@@ -1,27 +1,31 @@
 <?php
 declare(strict_types=1);
  class Category {
-    private $id;
-    private $name;
+    private  $id;
+    private  $name;
 
-    public function __construct($id, $name) {
+    public function __construct( $id,  $name) {
         $this->id = $id;
         $this->name = $name;
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->name;
     }
 
-    public function setId($id) {
+    public function setId($id)
+    {
         $this->id = $id;
     }
 
-    public function setName($name) {
+    public function setName($name): void
+    {
         $this->name = $name;
     }
  }

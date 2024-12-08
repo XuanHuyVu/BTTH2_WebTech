@@ -2,8 +2,10 @@
 require_once '../../../services/NewsService.php';
 require_once '../../../models/News.php'; // Đảm bảo lớp News đã được định nghĩa
 
-class NewsController {
-    public function index() {
+class NewsController
+{
+    public function index()
+    {
         // Gọi dữ liệu từ NewsService
         $newsService = new NewsService();
         $newsList = $newsService->getAllNews();
@@ -12,84 +14,92 @@ class NewsController {
         return $newsList;
     }
 
-    public function add() {
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Lấy dữ liệu từ form
-            $title = $_POST['title'];
-            $content = $_POST['content'];
-            $image = $_FILES['image']['name'];
-            $createdAt = $_POST['created_at'];
-            $categoryId = $_POST['category_id'];
+    public function addNews($title, $content, $image, $created_at, $category_id)
+    {
+        // Cấu hình kết nối PDO
+        $host = 'localhost'; // Thay đổi nếu cần
+        $dbname = 'newsweb'; // Thay đổi theo tên cơ sở dữ liệu của bạn
+        $username = 'root'; // Tên người dùng cơ sở dữ liệu
+        $password = ''; // Mật khẩu người dùng cơ sở dữ liệu
 
-            // Xử lý upload ảnh
-            $imagePath = "../../../public/assets/images/$image";
-            move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+        try {
+            // Kết nối PDO
+            $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            // Tạo đối tượng News và thêm vào cơ sở dữ liệu
-            $news = new News(0, $title, $content, $image, $createdAt, $categoryId);
-            
-            // Gọi phương thức addNews từ NewsService
-            $newsService = new NewsService();
-            $newsService->addNews($news);
+            // Chuẩn bị câu lệnh SQL để thêm tin tức vào cơ sở dữ liệu
+            $stmt = $pdo->prepare("INSERT INTO news (title, content, image, created_at, category_id) VALUES (:title, :content, :image, :created_at, :category_id)");
 
-            // Chuyển hướng về trang danh sách
-            header("Location: index.php");
-            exit();
-        }
-        // Render dữ liệu ra Add News page
-        require_once '../../../views/admin/news/add.php';
-    }
+            // Gắn giá trị cho các tham số
+            $stmt->bindParam(':title', $title);
+            $stmt->bindParam(':content', $content);
+            $stmt->bindParam(':image', $image);
+            $stmt->bindParam(':created_at', $created_at);
+            $stmt->bindParam(':category_id', $category_id, PDO::PARAM_INT);
 
-    public function edit() {
-        // Lấy id từ URL
-        $id = $_GET['id'];
-
-        // Gọi dữ liệu từ NewsService
-        $newsService = new NewsService();
-        $news = $newsService->getNewsById($id);
-
-        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            // Lấy dữ liệu từ form
-            $title = $_POST['title'];
-            $content = $_POST['content'];
-            $image = $_FILES['image']['name'];
-            $createdAt = $_POST['created_at'];
-            $categoryId = $_POST['category_id'];
-
-            // Kiểm tra và xử lý ảnh (nếu có ảnh mới)
-            if ($image) {
-                $imagePath = "../../../public/assets/images/$image";
-                move_uploaded_file($_FILES['image']['tmp_name'], $imagePath);
+            // Thực thi câu lệnh SQL
+            if ($stmt->execute()) {
+                echo "<script>alert('Tin tức đã được thêm thành công!');</script>";
             } else {
-                // Nếu không có ảnh mới, giữ ảnh cũ
-                $image = $news->getImage();
+                echo "<script>alert('Có lỗi khi thêm tin tức!');</script>";
             }
 
-            // Tạo đối tượng News và cập nhật vào cơ sở dữ liệu
-            $news = new News($id, $title, $content, $image, $createdAt, $categoryId);
-            
-            // Gọi phương thức updateNews từ NewsService
-            $newsService->updateNews($news);
+        } catch (PDOException $e) {
+            // Nếu có lỗi xảy ra trong kết nối hoặc truy vấn, hiển thị thông báo lỗi
+            echo "Lỗi kết nối cơ sở dữ liệu: " . $e->getMessage();
+        }
+    }
 
-            // Chuyển hướng về trang danh sách
+    public function updateNews(News $news)
+    {
+        // Cấu hình kết nối PDO
+        $host = 'localhost';
+        $dbname = 'newsweb';
+        $username = 'root';
+        $password = '';
+
+        // Kết nối PDO
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Cập nhật tin tức vào cơ sở dữ liệu
+        $sql = "UPDATE news SET title = ?, content = ?, image = ?, created_at = ?, category_id = ? WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $news->getTitle(),
+            $news->getContent(),
+            $news->getImage(),
+            $news->getCreatedAt(),
+            $news->getCategoryId(),
+            $news->getId()
+        ]);
+    }
+
+
+    // NewsController.php
+
+    public function delete()
+    {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+
+            $newsService = new NewsService();
+            return $newsService->deleteNews($id);
+
+            // Lưu thông báo vào session
+            if ($deleteSuccess) {
+                $_SESSION['message'] = 'Xóa tin tức thành công!';
+                $_SESSION['message_type'] = 'success';
+            } else {
+                $_SESSION['message'] = 'Không thể xóa tin tức!';
+                $_SESSION['message_type'] = 'danger';
+            }
+
+            // Chuyển hướng về trang danh sách tin tức sau khi xóa
             header("Location: index.php");
             exit();
         }
-        // Render dữ liệu ra Edit News page
-        require_once '../../../views/admin/news/edit.php';
     }
 
-    public function delete() {
-        // Lấy id từ URL
-        $id = $_GET['id'];
 
-        // Gọi phương thức deleteNews từ NewsService
-        $newsService = new NewsService();
-        $newsService->deleteNews($id);
-
-        // Chuyển hướng về trang danh sách
-        header("Location: index.php");
-        exit();
-    }
 }
-?>

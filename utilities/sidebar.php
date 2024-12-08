@@ -11,7 +11,7 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active" >
-        <a class="nav-link" href="/BTTH2/views/admin/dashboard.php">
+        <a class="nav-link" href="../admin/dashboard.php">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
@@ -28,14 +28,14 @@
 
     <!-- Nav Item - News -->
     <li class="nav-item">
-        <a class="nav-link" href="/BTTH2/views/admin/news/index.php">
+        <a class="nav-link" href="../admin/news/index.php">
             <i class="fas fa-newspaper" style="color: #ffffff;"></i>
             <span>News</span></a>
     </li>
 
     <!-- Nav Item - Categories -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="../categories/cate.php">
             <i class="fas fa-list" style="color: #ffffff;"></i>
             <span>Categories</span></a>
     </li>
