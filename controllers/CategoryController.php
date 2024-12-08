@@ -3,7 +3,7 @@ require_once '../../../services/CategoryService.php';
 require_once '../../../models/Category.php';
 class CategoryController
 {
-    public function index()
+    public function indexCategory()
     {
         //Gọi dữ liệu từ thằng CategoryService
         $CategoryService = new CategoryService();

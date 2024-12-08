@@ -6,8 +6,12 @@ class CategoryService {
     private ?PDO $pdo = null;
 
     private function connectCate(): void {
+        $host = 'localhost';
+        $host = 'newsweb';
+        $username = 'root';
+        $password = '';
         if ($this->pdo === null) {
-            $this->pdo = new PDO('mysql:host=localhost;dbname=newsweb', 'root', '', [
+            $this->pdo = new PDO('mysql:host=$host;dbname=$host',$username ,$password , [
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
                 PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
             ]);
@@ -38,13 +42,13 @@ class CategoryService {
         $categories = null;
         try {
             $db = $this->connect();
-            $sql = 'SELECT * FROM news WHERE id = ?';
+            $sql = 'SELECT * FROM categories WHERE id = ?';
             $stmt = $db->prepare($sql);
             $stmt->execute([$id]);
             $n = $stmt->fetch();
 
             if ($n) {
-                $categories = new News(
+                $categories = new Category(
                     (int) $n['id'],
                     $n['name'],
                 );
@@ -59,7 +63,7 @@ class CategoryService {
     {
         try {
             $db = $this->connect();
-            $sql = 'INSERT INTO news (name) VALUES (?)';
+            $sql = 'INSERT INTO categories (name) VALUES (?)';
             $stmt = $db->prepare($sql);
             $stmt->execute([
                 $category->getName(),
@@ -73,7 +77,7 @@ class CategoryService {
     {
         try {
             $db = $this->connect();
-            $sql = 'UPDATE news SET name = ? WHERE id = ?';
+            $sql = 'UPDATE categories SET name = ? WHERE id = ?';
             $stmt = $db->prepare($sql);
             $stmt->execute([
                 $category->getName(),
@@ -110,4 +114,9 @@ class CategoryService {
         }
     }
 }
+
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
+
 
