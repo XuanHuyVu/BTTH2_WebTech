@@ -12,7 +12,7 @@ $users = $usersController->indexUser();
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>News Management System</title>
+    <title>Users Management System</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet"
           type="text/css">s
     <link
@@ -35,7 +35,7 @@ $users = $usersController->indexUser();
                 </nav>
 
                 <div class="container-fluid">
-                    <a href="add.php" class="btn btn-primary"><i class="fas fa-circle-plus"></i> Thêm tin tức</a>
+                    <a href="add.php" class="btn btn-primary"><i class="fas fa-circle-plus"></i> Thêm người dùng</a>
                     <div>
 
                     </div>
@@ -56,12 +56,12 @@ $users = $usersController->indexUser();
                                 <td><?php echo htmlspecialchars($users->getPassword()); ?></td>
                                 <td><?php echo htmlspecialchars($users->getRole()); ?></td>
 
-<!--                                <td>-->
-<!--                                    <a href="edit.php?controller=news&action=edit&id=--><?php //echo $news->getId(); ?><!--"-->
-<!--                                        class="btn btn-warning"><i class="fas fa-pen-to-square"></i> Edit</a>-->
-<!--                                    <a href="index.php?controller=news&action=delete&id=--><?php //echo $news->getId(); ?><!--"-->
-<!--                                        class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>-->
-<!--                                </td>-->
+                                <td>
+                                    <a href="edit.php?controller=news&action=edit&id=<?php echo $users->getId(); ?>"
+                                        class="btn btn-warning"><i class="fas fa-pen-to-square"></i> Edit</a>
+                                    <a href="index.php?controller=news&action=delete&id=<?php echo $users->getId(); ?>"
+                                        class="btn btn-danger"><i class="fas fa-trash"></i> Delete</a>
+                                </td>
                             </tr>
                         <?php endforeach; ?>
                         </tbody>
