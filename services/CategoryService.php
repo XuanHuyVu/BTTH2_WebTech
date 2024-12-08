@@ -54,5 +54,19 @@ class CategoryService {
         }
         return $categories;
     }
+
+    public function addCategories(Category $category): void
+    {
+        try {
+            $db = $this->connect();
+            $sql = 'INSERT INTO news (name) VALUES (?)';
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                $category->getName(),
+            ]);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+    }
 }
 
