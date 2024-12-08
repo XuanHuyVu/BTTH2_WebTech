@@ -78,10 +78,10 @@ class NewsController
 
     // NewsController.php
 
-    public function delete($id)
+    public function delete()
     {
-        if (isset($_GET['id'])) {
-            $id = $_GET['id'];
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
 
             $newsService = new NewsService();
             return $newsService->deleteNews($id);
