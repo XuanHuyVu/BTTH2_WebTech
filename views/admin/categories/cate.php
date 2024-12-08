@@ -1,10 +1,9 @@
 <?php
 require_once '../../../controllers/CategoryController.php';
 $categoryController = new CategoryController();
-$categories = $categoryController->index();
+$categories = $categoryController->indexCategory();
 ?>
 
-n   n
 <!DOCTYPE html>
 <html lang="en">
 
