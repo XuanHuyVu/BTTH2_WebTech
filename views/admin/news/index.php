@@ -159,7 +159,7 @@ $newsList = $newsController->index();
                                 <div class="modal-body">Chọn "Log Out" nếu bạn muốn đóng phiên làm việc của mình!</div>
                                 <div class="modal-footer">
                                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                    <a class="btn btn-primary" href="../login.php">Log Out</a>
+                                    <a class="btn btn-primary" href="../logout.php">Log Out</a>
                                 </div>
                             </div>
                         </div>

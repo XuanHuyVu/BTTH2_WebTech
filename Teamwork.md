@@ -1,6 +1,6 @@
 > Vũ Xuân huy
 > * Làm việc với news: thêm, sửa, xóa news
-> * Tạo homepage, login, dashboard
+> * Tạo: homepage view, login view, dashboard view
 
 > Nguyễn Thành Chung
 > * Làm việc với Users: thêm, sửa, xóa User
