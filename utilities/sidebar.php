@@ -21,7 +21,7 @@
 
     <!-- Nav Item - Users -->
     <li class="nav-item">
-        <a class="nav-link" href="">
+        <a class="nav-link" href="../admin/users/index.php">
             <i class="fa-solid fa-user" style="color: #ffffff;"></i>
             <span>Users</span></a>
     </li>
