@@ -42,4 +42,46 @@ class CategoryController
         }
     }
 
+    public function updateCategories( Category $category)
+    {
+        // Cấu hình kết nối PDO
+        $host = 'localhost';
+        $dbname = 'newsweb';
+        $username = 'root';
+        $password = '';
+
+        // Kết nối PDO
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Cập nhật tin tức vào cơ sở dữ liệu
+        $sql = "UPDATE news SET name = ? WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $category->getName(),
+        ]);
+    }
+
+    public function delete()
+    {
+        if (isset($_POST['id'])) {
+            $id = $_POST['id'];
+
+            $categoriesService = new CategoryService();
+            return $categoriesService->deleteCategories($id);
+
+            // Lưu thông báo vào session
+            if ($deleteSuccess) {
+                $_SESSION['message'] = 'Xóa tin tức thành công!';
+                $_SESSION['message_type'] = 'success';
+            } else {
+                $_SESSION['message'] = 'Không thể xóa tin tức!';
+                $_SESSION['message_type'] = 'danger';
+            }
+
+            // Chuyển hướng về trang danh sách tin tức sau khi xóa
+            header("Location: cate.php");
+            exit();
+        }
+    }
 }
