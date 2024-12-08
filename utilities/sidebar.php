@@ -35,7 +35,7 @@
 
     <!-- Nav Item - Categories -->
     <li class="nav-item">
-        <a class="nav-link" href="../categories/cate.php">
+        <a class="nav-link" href="../admin/categories/cate.php">
             <i class="fas fa-list" style="color: #ffffff;"></i>
             <span>Categories</span></a>
     </li>

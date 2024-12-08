@@ -52,7 +52,7 @@
         <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                 <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
+                Đăng xuất
             </a>
         </div>
     </li>
@@ -64,16 +64,16 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn đăng xuất khỏi hệ thống quản lý?
+                <h5 class="modal-title" id="exampleModalLabel">Bạn có chắc chắn muốn đăng xuất khỏi hệ thống?
                 </h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
             </div>
-            <div class="modal-body">Chọn "Log Out" nếu bạn muốn đóng phiên làm việc của mình!</div>
+            <div class="modal-body">Chọn "Thoát" nếu bạn muốn kết thúc phiên làm việc của mình!</div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                <a class="btn btn-primary" href="../login.php">Log Out</a>
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
+                <a class="btn btn-primary" href="../login.php">Thoát</a>
             </div>
         </div>
     </div>
