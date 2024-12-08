@@ -68,5 +68,20 @@ class CategoryService {
             error_log($e->getMessage());
         }
     }
+
+    public function updateCategories(Category $category): void
+    {
+        try {
+            $db = $this->connect();
+            $sql = 'UPDATE news SET name = ? WHERE id = ?';
+            $stmt = $db->prepare($sql);
+            $stmt->execute([
+                $category->getName(),
+
+            ]);
+        } catch (PDOException $e) {
+            error_log($e->getMessage());
+        }
+    }
 }
 

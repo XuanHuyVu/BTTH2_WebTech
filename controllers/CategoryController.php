@@ -42,4 +42,23 @@ class CategoryController
         }
     }
 
+    public function updateCategories( Category $category)
+    {
+        // Cấu hình kết nối PDO
+        $host = 'localhost';
+        $dbname = 'newsweb';
+        $username = 'root';
+        $password = '';
+
+        // Kết nối PDO
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+        // Cập nhật tin tức vào cơ sở dữ liệu
+        $sql = "UPDATE news SET name = ? WHERE id = ?";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([
+            $category->getName(),
+        ]);
+    }
 }

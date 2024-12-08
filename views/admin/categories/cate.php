@@ -4,7 +4,7 @@ $categoryController = new CategoryController();
 $categories = $categoryController->index();
 ?>
 
-
+n   n
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,7 +13,7 @@ $categories = $categoryController->index();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>News Management System | Categories</title>
+    <title>Categories Management System | Categories</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" rel="stylesheet"
         type="text/css">
     <link
