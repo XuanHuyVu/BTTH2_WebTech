@@ -85,7 +85,7 @@ $newsList = $homeController->indexHome();
                         <div class="topbar-divider d-none d-sm-block"></div>
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="btn btn-danger" href="../views/login.php">Đăng nhập</a>
+                            <a class="btn btn-danger" href="../views/logout.php">Đăng xuất</a>
                         </li>
                     </ul>
                 </nav>

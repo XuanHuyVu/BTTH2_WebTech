@@ -21,7 +21,7 @@
 
 
 ## Users
-
+<img src="/public/assets/images/users.png" alt="User table">
 
 ## Categories
 
