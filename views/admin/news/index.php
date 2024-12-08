@@ -59,7 +59,7 @@ $newsList = $newsController->index();
                             <?php foreach ($newsList as $news): ?>
                                 <tr>
                                     <td><?php echo $news->getId(); ?></td>
-                                    <td><?php echo htmlspecialchars($news->getId()); ?></td>
+                                    <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
                                     <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
                                         <?php echo htmlspecialchars(substr($news->getContent(), 0, 50)) . (strlen($news->getContent()) > 50 ? '...' : ''); ?>
                                     </td>
