@@ -5,7 +5,6 @@ $categories = $categoryController->index();
 ?>
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -40,7 +39,11 @@ $categories = $categoryController->index();
                             <tr>
                                 <th class="align-middle">Mã</th>
                                 <th class="align-middle">Tên</th>
-                                <th class="align-middle">Thao tác</th>
+                                <th colspan="2" class="align-middle">Thao tác</th>
+                            </tr>
+                            <tr>
+                                <th>Sửa</th>
+                                <th>Xoá</th>
                             </tr>
                         </thead>
                         <tbody class="table-border">
@@ -56,8 +59,10 @@ $categories = $categoryController->index();
                                         <td class="text-center align-middle">
                                             <a href="edit.php?id=<?php echo $category->getId(); ?>" class="btn btn-warning"><i
                                                     class="fas fa-edit"></i> Sửa</a>
+                                        </td>
+                                        <td class="text-center align-middle">
                                             <a href="delete.php?id=<?php echo $category->getId(); ?>" class="btn btn-danger"><i
-                                                    class="fas fa-trash"></i> Xóa</a>
+                                                        class="fas fa-trash"></i> Xóa</a>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
