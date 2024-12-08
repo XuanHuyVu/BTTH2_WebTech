@@ -14,7 +14,7 @@ class NewsService {
         $newsList = [];
         try {
             $db = $this->connect();
-            $sql = 'SELECT * FROM news ORDER BY created_at DESC';
+            $sql = "SELECT * FROM news ORDER BY created_at DESC";
             $stmt = $db->prepare($sql);
             $stmt->execute();
             $news = $stmt->fetchAll();
