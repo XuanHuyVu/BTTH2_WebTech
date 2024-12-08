@@ -59,7 +59,7 @@ $newsList = $newsController->index();
                             <?php foreach ($newsList as $news): ?>
                                 <tr>
                                     <td><?php echo $news->getId(); ?></td>
-                                    <td><?php echo htmlspecialchars($news->getTitle()); ?></td>
+                                    <td><?php echo htmlspecialchars($news->getId()); ?></td>
                                     <td title="<?php echo htmlspecialchars($news->getContent()); ?>">
                                         <?php echo htmlspecialchars(substr($news->getContent(), 0, 50)) . (strlen($news->getContent()) > 50 ? '...' : ''); ?>
                                     </td>
@@ -104,5 +104,4 @@ $newsList = $newsController->index();
     <script src="../../../public/assets/js/demo/chart-area-demo.js"></script>
     <script src="../../../public/assets/js/demo/chart-pie-demo.js"></script>
 </body>
-
 </html>

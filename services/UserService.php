@@ -1,7 +1,7 @@
 <?php
 // declare(strict_types=1);
 // require_once '../models/User.php';
-
+//
 // class UserService {
 //     public function getAllUsers() {
 //         try {
@@ -22,4 +22,4 @@
 //         }
 //     }
 // }
-?>
+//?>
