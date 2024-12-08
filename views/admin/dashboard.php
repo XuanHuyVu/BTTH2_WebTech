@@ -1,3 +1,9 @@
+<?php
+require_once '../../controllers/AdminController.php';
+$adminController = new AdminController();
+$newsList = $adminController->indexAdmin();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
