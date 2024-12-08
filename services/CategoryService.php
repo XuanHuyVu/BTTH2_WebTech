@@ -1,25 +1,33 @@
 <?php
 declare(strict_types=1);
-require_once '../../../models/Category.php';
+require_once __DIR__.'/../models/Category.php';
 class CategoryService{
-    public function getALLCategories(): ?array
+
+    private function connect(): PDO {
+        return new PDO('mysql:host=localhost;dbname=newsweb', 'root', '', [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+        ]);
+    }
+    public function getAllCategories(): array
     {
         try {
-            $db = new PDO('mysql:host=localhost;dbname=newsweb', 'root', '');
-            $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $db = $this->connect();
             $sql = "SELECT * FROM categories";
             $stmt = $db->prepare($sql);
             $stmt->execute();
-            $categories = $stmt->fetchAll();
+            $result = $stmt->fetchAll();
             $category = [];
-            foreach ($categories as $a) {
-                $category[] = new Category($a['id'], $a['name']);
+            foreach ($result as $a) {
+                $category[] = new Category((int)$a['id'], $a['name']);
             }
             return $category;
         }
         catch(PDOException $e){
+            error_log($e->getMessage());
             return $category = [];
         }
     }
 }
 ?>
+

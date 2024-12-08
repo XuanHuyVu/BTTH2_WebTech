@@ -33,7 +33,7 @@ class NewsController {
             $newsService->addNews($news);
 
             // Chuyển hướng về trang danh sách
-            header("Location: index.php");
+            header("Location: cate.php");
             exit();
         }
         // Render dữ liệu ra Add News page
@@ -72,7 +72,7 @@ class NewsController {
             $newsService->updateNews($news);
 
             // Chuyển hướng về trang danh sách
-            header("Location: index.php");
+            header("Location: cate.php");
             exit();
         }
         // Render dữ liệu ra Edit News page
@@ -88,7 +88,7 @@ class NewsController {
         $newsService->deleteNews($id);
 
         // Chuyển hướng về trang danh sách
-        header("Location: index.php");
+        header("Location: cate.php");
         exit();
     }
 }
