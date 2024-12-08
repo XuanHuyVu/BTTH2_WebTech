@@ -63,7 +63,7 @@ $users = $usersController->indexUser();
                                         <form action="delete.php" method="post" class="d-inline-block">
                                             <input type="hidden" name="id" value="<?= $users->getId() ?>">
                                             <button type="submit" class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Bạn có chắc muốn xóa tin tức này không?')">
+                                                    onclick="return confirm('Bạn có chắc muốn xóa người dùng này không?')">
                                                 <i class="fas fa-trash"></i>
                                             </button>
                                         </form>

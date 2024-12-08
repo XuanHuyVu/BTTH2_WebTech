@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="mb-3">
             <label for="category_id" class="form-label">Vai trò:</label>
             <select id="category_id" name="category_id" class="form-select" required>
-                <option value="1">0</option>
-                <option value="2">1</option>
+                <option value="1">người dùng thường</option>
+                <option value="2">admin</option>
             </select>
         </div>
 
