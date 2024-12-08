@@ -38,7 +38,7 @@ n   n
                         <thead class="text-center">
                             <tr>
                                 <th class="align-middle">Mã</th>
-                                <th class="align-middle">Tên</th>
+                                <th class="align-middle">Tên danh mục</th>
                                 <th colspan="2" class="align-middle">Thao tác</th>
                             </tr>
                             <tr>
